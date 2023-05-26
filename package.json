@@ -5,10 +5,6 @@
     "keystone:dev": "ENV=dev keystone dev",
     "keystone:build": "keystone build",
     "keystone:start": "keystone start",
-    "next:dev": "next dev -p 4000",
-    "start": "next start",
-    "typecheck": "tsc",
-    "build": "yarn next build && yarn next export && touch ./out/.nojekyll",
     "db:prod": "NODE_ENV=production yarn keystone prisma db push"
   },
   "dependencies": {
