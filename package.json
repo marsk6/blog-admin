@@ -5,6 +5,7 @@
     "keystone:dev": "ENV=dev keystone dev",
     "keystone:build": "keystone build",
     "keystone:start": "keystone start",
+    "deploy": "yarn keystone:build && yarn keystone:start",
     "db:prod": "NODE_ENV=production yarn keystone prisma db push"
   },
   "dependencies": {
