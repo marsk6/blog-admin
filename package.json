@@ -6,7 +6,7 @@
     "keystone:build": "keystone build",
     "keystone:start": "keystone start",
     "deploy": "yarn keystone:build && yarn keystone:start",
-    "check": "bash ./script/check.sh",
+    "healthcheck": "bash ./script/check.sh",
     "db:prod": "NODE_ENV=production yarn keystone prisma db push"
   },
   "dependencies": {
