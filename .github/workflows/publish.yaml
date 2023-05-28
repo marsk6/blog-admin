@@ -1,0 +1,17 @@
+name: GitHub Actions Build and Deploy
+on:
+  push:
+    branches:
+      - master
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          repository: marsk6/marsk6.github.io
+          event-type: admin-update-event
