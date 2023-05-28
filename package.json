@@ -3,8 +3,8 @@
   "scripts": {
     "postinstall": "keystone postinstall",
     "keystone:dev": "ENV=dev keystone dev",
-    "keystone:build": "keystone build",
-    "keystone:start": "keystone start",
+    "keystone:build": "NODE_ENV=production keystone build",
+    "keystone:start": "NODE_ENV=production keystone start",
     "deploy": "yarn keystone:build && yarn keystone:start",
     "healthcheck": "bash ./script/check.sh",
     "db:prod": "NODE_ENV=production yarn keystone prisma db push"
