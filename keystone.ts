@@ -81,64 +81,26 @@ const Post: Lists.Post = list({
   },
   hooks: {
     resolveInput: async ({ operation, resolvedData, context }) => {
-      if (operation === 'create' && resolvedData.ctime === 0) {
-        resolvedData.ctime = Date.now()
-        resolvedData.date = dayjs().format('MM-DD')
+      if (operation === 'create') {
+        if (resolvedData.ctime === 0) {
+          resolvedData.ctime = Date.now()
+          resolvedData.date = dayjs().format('MM-DD')
+        }
+        resolvedData.readingTime = `${Math.trunc(
+          rt(resolvedData.content || '').minutes
+        )}`
       }
-      resolvedData.readingTime = `${Math.trunc(
-        rt(resolvedData.content || '').minutes
-      )}`
+
       return resolvedData
     },
     afterOperation: async ({ operation, item, context }) => {
       if (operation === 'create') {
         return
-        const { categoryId, ctime } = item
-        if (!categoryId) return
-        const list = await context.query.Post.findMany({
-          where: {
-            category: { id: { equals: categoryId } },
-            ctime: { lte: ctime },
-          },
-          orderBy: { ctime: 'asc' },
-          query: 'slug title',
-        })
-        if (list.length > 1) {
-          const prev = list[list.length - 2]
-
-          await context.query.Post.updateMany({
-            data: [
-              {
-                where: { slug: prev.slug },
-                data: { next: { slug: item.slug, title: item.title } },
-              },
-              {
-                where: { slug: item.slug },
-                data: { prev: { ...prev } },
-              },
-            ],
-          })
-        }
       }
     },
     beforeOperation: async ({ operation, item, context }) => {
       if (operation === 'delete') {
         return
-        const { prev, next, attachmentId } = item
-        prev?.slug &&
-          context.query.Post.updateOne({
-            where: { slug: prev.slug },
-            data: { next },
-          })
-        next?.slug &&
-          context.query.Post.updateOne({
-            where: { slug: next.slug },
-            data: { prev },
-          })
-        context.query.UploadPost.deleteOne({
-          where: { id: attachmentId },
-          query: 'id',
-        })
       }
     },
   },
