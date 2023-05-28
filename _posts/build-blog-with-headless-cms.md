@@ -1,20 +1,17 @@
 ---
-created_date: 2022-03-17 00:40
-updated_date: 2023-03-07 18:00
-archive:
+created_date: 2020-11-03 19:13
+updated_date: 2023-05-28 20:12
 tags:
-
-  - Others
-keywords:
-  -
+  - 技术方案
 title: 用 Headless CMS 管理博客
 slug: build-blog-with-headless-cms
-brief: 简单介绍用 keystone 作为博客的内容管理器
+brief: 用 next.js 搭建了静态博客，还要做好博客的内容管理，headless cms 是一个很好的选择，利用其现成的 CURD 功能。简单介绍一个 headless cms - keystone，作为我的博客的内容管理器。
+name: build-blog-with-headless-cms
 ---
 
 ## 背景
 
-上一篇[使用 Next.js 搭建个人博客](https://marsk6.github.io/posts/build-blog-with-nextjs)已经搭建起前端界面，但管理和组织博客内容还很原始，缺少持久化和分类统计，因此需要一个管理后台来管理博客内容，并提供 API 给前端页面调用。
+上一篇 [使用 Next.js 搭建个人博客](https://marsk6.github.io/posts/build-blog-with-nextjs) 已经搭建起前端界面，但管理和组织博客内容还很原始，缺少持久化和分类统计，因此需要一个管理后台来管理博客内容，并提供 API 给前端页面调用。
 实现一个管理后台需要
 - 数据库表结构设计
 - 业务逻辑设计及实现（CRUD）
@@ -189,10 +186,6 @@ const Tag = list({
 ![](https://cdn.jsdelivr.net/gh/marsk6/image-center@master/build-blog-with-headless-cms-2.png)
 
 这样就可以通过 keystone 的 api 获取 tag 的种类和一篇 post 关联了哪些 tag 了
-
-## 部署
-
-部署没有变化
 
 ## 参考
 

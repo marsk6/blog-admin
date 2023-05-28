@@ -35,8 +35,10 @@ export function Field({
     ...data.data,
   }
   const handlePreview = () => {
-    const frame = document.querySelector<HTMLIFrameElement>('#post-preview')
-    frame?.contentWindow?.postMessage(JSON.stringify(post), '*')
+    setTimeout(() => {
+      const frame = document.querySelector<HTMLIFrameElement>('#post-preview')
+      frame?.contentWindow?.postMessage(JSON.stringify(post), '*')
+    }, 500)
   }
   return (
     <FieldContainer as="fieldset">
@@ -54,9 +56,9 @@ export function Field({
           style={{ width: '100%', height: '100%' }}
           id="post-preview"
           src={
-            process.env._DEV_
-              ? 'http://localhost:4000/preview'
-              : `${process.env.BLOG.site}/preview`
+            process.env.NODE_ENV === 'production'
+              ? 'https://marsk6.github.io/preview'
+              : 'http://localhost:4000/preview'
           }
           onLoad={handlePreview}
         ></iframe>

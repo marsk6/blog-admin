@@ -1,11 +1,12 @@
 ---
-created_date: 2022-02-27 11:48
-updated_date: 2023-03-05 20:36
-title: 使用 Next.js 搭建个人博客
-slug: build-blog-with-nextjs
-brief: 用 next.js 搭建个人静态博客
 tags:
-
+  - 技术方案 
+created_date: 2020-09-27 11:48
+updated_date: 2023-05-28 19:49
+title: 用 Next.js 搭建个人博客
+slug: build-blog-with-nextjs
+brief: next.js 是一个 React 框架，主打服务端渲染（SSR）和静态网页生成（SSG），因此可以用 next.js 搭建个人静态博客。
+name: build-blog-with-nextjs
 ---
 
 现阶段有非常非常多的静态博客生成工具（[site generators](https://jamstack.org/generators/)），Hexo、VuePress、Docusaurus 等等，基本只需把 markdown 文件配置到指定目录，无需编写其他代码即可建站。
@@ -61,7 +62,11 @@ tags:
 
 ## 生成页面
 
-生成的页面对应 pages 目录下的文件，页面的路由为文件路径名，例如 `pages/about.tsx` ，则页面路由为 `/about`。
+有两种方式生成页面，在 pages 目录和使用 `getStaticPaths`
+
+### pages 目录
+
+生成的页面对应 pages 目录下的文件，页面的路由为文件路径名，例如 `pages/about.tsx`，则页面路由为 `/about`。
 
 一般项目的目录都会有 src 目录，所以 next.js 也支持 src/pages 目录。
 
@@ -98,7 +103,7 @@ export async function getStaticPaths() {
 
 `getStaticProps` 会在服务端执行，因此可以使用 node api，读取文件系统，获取 markdown 内容。
 
-返回值会作为页面组件的 props，入参为 `getStaticPaths`的返回值。
+返回值会作为页面组件的 props，入参为 `getStaticPaths` 的返回值。
 
 ```ts
 const Post = ({ post, morePosts }: Props) => {
@@ -126,7 +131,7 @@ export async function getStaticProps({ params }) {
 
 在 pages 下还有 `_app.tsx` 和 `_document.tsx`，这两个文件用于定制化页面。
 
-next.js 默认使用 `next/app` 初始化页面，`_app.tsx`会替代`next/app`初始化页面，因此可以在 `_app.tsx`放一些公共逻辑，公共的布局，导入样式等。
+next.js 默认使用 `next/app` 初始化页面，`_app.tsx` 会替代 `next/app` 初始化页面，因此可以在 `_app.tsx` 放一些公共逻辑，公共的布局，导入样式等。
 
 ```tsx
 import { AppProps } from 'next/app';
@@ -170,3 +175,9 @@ export default function Document() {
 
 - [Next.js 官方文档](https://nextjs.org/docs)
 - [学习 Next.js](https://nextjs.org/learn/foundations/about-nextjs?utm_source=next-site&utm_medium=nav-cta&utm_campaign=next-website)
+
+> 本博客 ([Hea的web博客](https://marsk6.github.io/)) 所有文章除特别声明外，均采用 BY-NC-SA 许可协议。转载请注明出处！
+
+---
+
+[[tech]]
