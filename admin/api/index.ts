@@ -14,11 +14,13 @@ export const createPosts = async (
     const { created_date, updated_date, tags, category, title, slug, brief } =
       data.data
     let ctime = 0
+    let mtime = 0
     let date = ''
     if (created_date) {
       const day = dayjs(created_date, 'YYYY-MM-DD HH:mm')
       ctime = day.valueOf()
       date = day.format('MM-DD')
+      mtime = dayjs(updated_date, 'YYYY-MM-DD HH:mm').valueOf()
     }
     files.push({
       title,
@@ -27,6 +29,7 @@ export const createPosts = async (
       slug,
       content: data.content,
       ctime,
+      mtime,
       date,
       brief,
     })

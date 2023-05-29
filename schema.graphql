@@ -10,6 +10,7 @@ type Post {
   category: Category
   attachment: UploadPost
   ctime: Float
+  mtime: Float
   date: String
   readingTime: String
   prevArticle: Post
@@ -34,6 +35,7 @@ input PostWhereInput {
   category: CategoryWhereInput
   attachment: UploadPostWhereInput
   ctime: FloatNullableFilter
+  mtime: FloatNullableFilter
   date: StringFilter
   readingTime: StringFilter
   prevArticle: PostWhereInput
@@ -103,6 +105,7 @@ input PostOrderByInput {
   slug: OrderDirection
   title: OrderDirection
   ctime: OrderDirection
+  mtime: OrderDirection
   date: OrderDirection
   readingTime: OrderDirection
   brief: OrderDirection
@@ -121,6 +124,7 @@ input PostUpdateInput {
   category: CategoryRelateToOneForUpdateInput
   attachment: UploadPostRelateToOneForUpdateInput
   ctime: Float
+  mtime: Float
   date: String
   readingTime: String
   prevArticle: PostRelateToOneForUpdateInput
@@ -166,6 +170,7 @@ input PostCreateInput {
   category: CategoryRelateToOneForCreateInput
   attachment: UploadPostRelateToOneForCreateInput
   ctime: Float
+  mtime: Float
   date: String
   readingTime: String
   prevArticle: PostRelateToOneForCreateInput

@@ -47,6 +47,7 @@ const Post: Lists.Post = list({
     ctime: float({
       defaultValue: 0,
     }),
+    mtime: float({ defaultValue: 0 }),
     date: text({ defaultValue: '' }),
     readingTime: text({
       ui: {
@@ -84,6 +85,7 @@ const Post: Lists.Post = list({
       if (operation === 'create') {
         if (resolvedData.ctime === 0) {
           resolvedData.ctime = Date.now()
+          resolvedData.mtime = Date.now()
           resolvedData.date = dayjs().format('MM-DD')
         }
         resolvedData.readingTime = `${Math.trunc(

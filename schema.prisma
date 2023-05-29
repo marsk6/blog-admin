@@ -21,6 +21,7 @@ model Post {
   attachment    UploadPost? @relation("Post_attachment", fields: [attachmentId], references: [id])
   attachmentId  String?     @unique @map("attachment")
   ctime         Float?      @default(0)
+  mtime         Float?      @default(0)
   date          String      @default("")
   readingTime   String      @default("")
   prevArticle   Post?       @relation("Post_nextArticle")
