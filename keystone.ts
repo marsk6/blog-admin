@@ -85,7 +85,6 @@ const Post: Lists.Post = list({
       if (operation === 'create') {
         if (resolvedData.ctime === 0) {
           resolvedData.ctime = Date.now()
-          resolvedData.mtime = Date.now()
           resolvedData.date = dayjs().format('MM-DD')
         }
         resolvedData.readingTime = `${Math.trunc(
